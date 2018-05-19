@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>GITHUB ACTIVITY VIEWER</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Visualize your github activity or a repo's traffic in form of graphs, charts etc">
+
+	<!-- bootstrap -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+	<!-- of course I need font awesome -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+	<!-- google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="body">
+	<div class="overlay">
+		<div class="container">
+		<div class="row p-3">
+			<h1 class="site-title"> GitHub Activiewer</h1>
+			<div class="credits ml-auto d-none d-sm-block">Santiago</div>
+		</div>
+		
+		
+		<main class="main d-flex align-items-center" id="homepage">
+			
+				<form class="main-form ml-auto mr-auto">
+					<div class="form-group">
+						<label for="action"><h2>What do you want to do?</h2></label>
+						<select class="form-control" name="action" id="action">
+							<option value="1">View Github Activity Chart</option>
+							<option value="2">View Repository Traffic</option>
+							<option value="3">View User Profile</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="username"><h2>Github username:</h2></label>
+						<input type="text" name="username" class="form-control" id="username" placeholder="Itope84">
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-success btn-lg submit" id="submit">View Activity</button>
+					</div>
+
+				</form>
+
+				
+		</main>
+
+		<!-- The Results window -->
+		<div class="mt-4" id="resultsWindow" style="display: none;">
+			<!-- The inline form -->
+			<form>
+				<div class="form-row justify-content-center">
+					<div class="col col-md-5 form-group">
+						<select class="form-control" name="action" id="actionInline">
+							<option value="1">View Github Activity Chart</option>
+							<option value="2">View Repository Traffic</option>
+							<option value="3">View User Profile</option>
+						</select>
+					</div>
+					<div class="col col-md-4 form-group">
+						<input type="text" name="username" id="usernameInline" class="form-control">
+					</div>
+					<div class="col-md-3 form-group d-flex justify-content-center">
+						<button class="btn btn-success submit">View Activity</button>
+					</div>
+
+				</div>
+			</form>
+
+			<div class="results-main container py-2">
+				<!-- Top row -->
+				<div class="d-flex info-row">
+					<div class="avatar rounded-circle">
+						<img src="" alt="Ilesanmi T." id="avatar">
+
+					</div>
+					<!-- user or repo name -->
+					<h2 class="ml-3 align-self-center" id="name" style="color: #777;"></h2>
+				</div>
+
+				<!-- Main Results -->
+				<div class="content" id="results">
+
+						
+  
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+	<footer class="footer p-3">
+		Built with love by <a href="https://itope84.github.io" class="my-link">Ilesanmi Temitope (Santiago)
+	</footer>
+	
+	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+	<script src="activiewer.js"></script>
+</body>
+</html>

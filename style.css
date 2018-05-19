@@ -1,0 +1,105 @@
+
+
+.body{
+	width: 100%;
+	color: #fff;
+	min-height: 100vh;
+	background-image: url('dark-night-person-32237.jpg');
+	background-size: cover;
+	background-position: center;
+	font-family: 'Tajawal', sans-serif;
+}
+
+.overlay{
+	z-index: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.site-title{
+	font-weight: 700;
+}
+
+.main{
+	/*min-height: 70vh;*/
+	margin-bottom: 10vh;
+}
+
+#results{
+	color: #333;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10vh;
+}
+
+.content .list-group li{
+	border-left: none !important;
+	border-right: none !important;
+	border-radius: none !important;
+}
+
+.results-main{
+	width: 80%;
+	background-color: #fff;
+	border-radius: 5px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.results-main .info-row{
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 2rem;
+}
+
+.avatar{
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+}
+
+.avatar img{
+	width: 100%;
+}
+
+.main-form{
+	width: 80%;
+	max-width: 500px;
+}
+
+.main-form .form-group{
+	text-align: center;
+}
+
+h1{
+	font-size: 2.0rem;
+}
+
+h2{
+	font-size: 1.4rem;
+}
+
+.btn-lg.submit{
+	box-shadow: 2px 2px 4px #222;
+	transition-duration: 0.5s;
+}
+
+.btn-lg.submit:hover{
+	box-shadow: none;
+	/*background-color: inherit;*/
+}
+
+.footer{
+	position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+/*
+.container, .footer{
+	z-index: 1;
+}*/
