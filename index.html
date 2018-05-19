@@ -39,9 +39,10 @@
 							<option value="3">View User Profile</option>
 						</select>
 					</div>
-					<div class="form-group">
+					<div class="form-group has-danger">
 						<label for="username"><h2>Github username:</h2></label>
-						<input type="text" name="username" class="form-control" id="username" placeholder="Itope84">
+						<input type="text" name="username" class="form-control form-control-danger has-danger" id="username" placeholder="Itope84">
+						<small id="validateName" class="form-text py-2 ml-auto mr-auto bg-white text-danger" style="border-radius: 5px; max-width: 500px; display: none;">Wrong Repository Name</small>
 					</div>
 
 					<div class="form-group">
@@ -55,6 +56,8 @@
 
 		<!-- The Results window -->
 		<div class="mt-4" id="resultsWindow" style="display: none;">
+			<div id="loaderBg"><div id="loader"></div></div>
+
 			<!-- The inline form -->
 			<form>
 				<div class="form-row justify-content-center">
@@ -65,8 +68,9 @@
 							<option value="3">View User Profile</option>
 						</select>
 					</div>
-					<div class="col col-md-4 form-group">
-						<input type="text" name="username" id="usernameInline" class="form-control">
+					<div class="col col-md-4 form-group has-danger">
+						<input type="text" name="username" id="usernameInline" class="form-control form-control-danger">
+						<small id="validateName" class="form-text text-danger">Wrong Repository Name</small>
 					</div>
 					<div class="col-md-3 form-group d-flex justify-content-center">
 						<button class="btn btn-success submit">View Activity</button>
@@ -83,13 +87,13 @@
 
 					</div>
 					<!-- user or repo name -->
-					<h2 class="ml-3 align-self-center" id="name" style="color: #777;"></h2>
+					<h2 class="ml-1 ml-md-3 align-self-center" id="name" style="color: #777;max-width: 60%;word-wrap: break-word;"></h2>
 				</div>
 
 				<!-- Main Results -->
 				<div class="content" id="results">
 
-						
+					
   
 				</div>
 				
@@ -105,5 +109,8 @@
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 	<script src="activiewer.js"></script>
+	<script>
+	    
+	</script>
 </body>
 </html>
