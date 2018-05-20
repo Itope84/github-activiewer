@@ -54,6 +54,8 @@ document.getElementById('submitInline').addEventListener('click', function(e){
 	
 	//bring back the preloader
 	document.getElementById('loaderBg').style.display = 'flex';
+	document.getElementById('loader').style.display = 'inherit';
+	document.getElementById('loadError').style.display = 'none';
 
 	// what should i do?
 	loadResults(action, username);
