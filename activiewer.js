@@ -60,51 +60,46 @@ function loadResults(action, name) {
 
 
 
-
-	// https://api.github.com/repos/Itope84/itope84.github.io/stats/commit_activity
-	function getRepoActivity(repository){
-		
-		
+// there's a little problem here, gotta do form validation first... The repo name has to have the form username/reponame
+function getAvatar(type, name){
+	var url;
+	switch(type){
+		case 'user':
+			fullname = name;
+			url = "https://api.github.com/users/"+name;
+			break;
+		case 'repo':
+			fullname = name;
+			url = "https://api.github.com/repos/"+name;
+			break;
+		default:
+			break;
 	}
- 
-	// there's a little problem here, gotta do form validation first... The repo name has to have the form username/reponame
-	function getAvatar(type, name){
-		var url;
-		switch(type){
-			case 'user':
-				fullname = name;
-				url = "https://api.github.com/users/"+name;
-				break;
-			case 'repo':
-				fullname = name;
-				url = "https://api.github.com/repos/"+name;
-				break;
-			default:
-				break;
-		}
 
-		var ajax = new XMLHttpRequest();
-		ajax.onreadystatechange = function() {
-		    if (this.readyState == 4 && this.status == 200) {
-		    	var response = this.responseText;
-		    	var response = JSON.parse(response);
-		    	
-		    	if (type=='user') {
-		    		document.getElementById("avatar").src = response.avatar_url;
-		    		document.getElementById("name").innerHTML = response.name;
-		    	}
-		    	else{
-		    		document.getElementById("avatar").src = response.owner.avatar_url;
-		    		document.getElementById("name").innerHTML = response.full_name;
-		    	}
-		    	
-		    }
-		  };
-		  ajax.open("GET", url, true);
-		  // xhttp.setRequestHeader("User-Agent", "GitHubActiViewer");
-		  // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		  ajax.send();
-	}
+	var ajax = new XMLHttpRequest();
+	ajax.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	    	var response = this.responseText;
+	    	var response = JSON.parse(response);
+	    	
+	    	if (type=='user') {
+	    		document.getElementById("avatar").src = response.avatar_url;
+	    		document.getElementById("name").innerHTML = response.name;
+	    	}
+	    	else{
+	    		document.getElementById("avatar").src = response.owner.avatar_url;
+	    		document.getElementById("name").innerHTML = response.full_name;
+	    	}
+	    	
+	    }  else if(this.readyState == 4 && this.status==404) {
+	    	document.getElementById('loaderBg').innerHTML = '<div class="results-main">Sorry, ERROR 404! <br> That Repository or Username cannot be found </div>';
+	    } else if(this.readyState == 4 && this.status!=200) {
+	    	document.getElementById('loaderBg').innerHTML = '<div class="results-main">Sorry, An error occured. Please try again</div>';
+	    }
+	};
+  ajax.open("GET", url, true);
+  ajax.send();
+}
 
 
 
@@ -147,6 +142,9 @@ function ajaxRequest(url, callback){
 	    if (this.readyState == 4 && this.status == 200) {
 	      callback(this);
 	    }
+	    else if(this.readyState == 4 && this.status!=200){
+	    	document.getElementById('loaderBg').innerHTML = '<div class="results-main load-error text-center py-4 text-danger">Sorry, An error occured</div>';
+	    }
 	};
 	
 	xhttp.open("GET", url, true);
@@ -154,7 +152,7 @@ function ajaxRequest(url, callback){
 }
 
 function loadProfile(xhttp){
-	document.getElementById('loader').style.display = 'none';
+	document.getElementById('loaderBg').style.display = 'none';
 	var response = xhttp.responseText;
 	var response = JSON.parse(response);
 	document.getElementById("avatar").src = response.avatar_url;
