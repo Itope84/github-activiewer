@@ -21,6 +21,13 @@ document.getElementById("action").addEventListener('input', function(){
 	
 });
 
+document.getElementById("actionInline").addEventListener('input', function(){
+	var action = this.value;
+	var repoNameInput = document.getElementById('usernameInline');
+	validateRepoName(repoNameInput, action);
+	
+});
+
 var homepage = document.getElementById('homepage');
 var resultWindow = document.getElementById('resultsWindow');
 		
@@ -38,6 +45,23 @@ document.getElementById('submit').addEventListener('click', function(e){
 	loadResults(action, username);
 });
 
+document.getElementById('submitInline').addEventListener('click', function(e){
+	e.preventDefault();
+
+	// show results page and hide main page
+	var action = document.getElementById('actionInline').value;
+	var username = document.getElementById('usernameInline').value;
+	
+	//bring back the preloader
+	document.getElementById('loaderBg').style.display = 'flex';
+
+	// what should i do?
+	loadResults(action, username);
+});
+
+document.getElementById('tryAgain').addEventListener('click', function(e){
+	document.getElementById('loaderBg').style.display = 'none';
+});
 
 function loadResults(action, name) {
 	switch(action){
@@ -91,11 +115,7 @@ function getAvatar(type, name){
 	    		document.getElementById("name").innerHTML = response.full_name;
 	    	}
 	    	
-	    }  else if(this.readyState == 4 && this.status==404) {
-	    	document.getElementById('loaderBg').innerHTML = '<div class="results-main">Sorry, ERROR 404! <br> That Repository or Username cannot be found </div>';
-	    } else if(this.readyState == 4 && this.status!=200) {
-	    	document.getElementById('loaderBg').innerHTML = '<div class="results-main">Sorry, An error occured. Please try again</div>';
-	    }
+	    } 
 	};
   ajax.open("GET", url, true);
   ajax.send();
@@ -112,15 +132,19 @@ function validateRepoName(repoNameInput, action){
 				if (repoName.indexOf('/')===-1) {
 					//invalid
 					document.getElementById('validateName').style.display = 'inherit';
+					document.getElementById('validateName2').style.display = 'inherit';
 					document.getElementById('validateName').innerHTML = 'Repository name should be of the form "username/repoName"';
+					document.getElementById('validateName2').innerHTML = 'Repository name should be of the form "username/repoName"';
 				}
 				else{
 					document.getElementById('validateName').style.display = 'none';
+					document.getElementById('validateName2').style.display = 'none';
 				}
 
 				break;
 			default:
 				document.getElementById('validateName').style.display = 'none';
+				document.getElementById('validateName2').style.display = 'none';
 				break;
 		}
 	});
@@ -143,7 +167,9 @@ function ajaxRequest(url, callback){
 	      callback(this);
 	    }
 	    else if(this.readyState == 4 && this.status!=200){
-	    	document.getElementById('loaderBg').innerHTML = '<div class="results-main load-error text-center py-4 text-danger">Sorry, An error occured</div>';
+	    	// show loaderror and hide loader
+	    	document.getElementById('loader').style.display = 'none';
+	    	document.getElementById('loadError').style.display = 'inherit';
 	    }
 	};
 	
@@ -155,7 +181,7 @@ function loadProfile(xhttp){
 	document.getElementById('loaderBg').style.display = 'none';
 	var response = xhttp.responseText;
 	var response = JSON.parse(response);
-	document.getElementById("avatar").src = response.avatar_url;
+	document.getElementById("avatar").innerHTML = '<img src="'+response.avatar_url+'" id="avatar">';
 	document.getElementById("name").innerHTML = response.name;
   	document.getElementById("results").innerHTML = '<div class="row">'+
 		'<span class="col-sm-6"><b>Company:</b>'+response.company+'</span>'+

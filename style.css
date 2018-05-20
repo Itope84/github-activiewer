@@ -1,6 +1,7 @@
 /* Center the loader */
 #loaderBg{
 	display: flex;
+	z-index: 10;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
